@@ -7,6 +7,8 @@ require 'sinatra/content_for'
 require 'sinatra/reloader'
 require 'sinatra/flash'
 
+require 'haml'
+require 'sass'
 
 # Serve all public folder files
 # set :public_folder, 'public'
@@ -19,7 +21,7 @@ end
 
 get '/:route' do
   valid_routes = [  'about' ] 
-  
+
   valid_routes.each do | r |
     @route = r if params[:route] == r
   end
