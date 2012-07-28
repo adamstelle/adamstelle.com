@@ -7,8 +7,19 @@ require 'sinatra/content_for'
 require 'sinatra/reloader'
 require 'sinatra/flash'
 
-require 'haml'
+# Templating
 require 'sass'
+require 'rdiscount'
+require 'nokogiri'
+
+# Email
+require 'gibbon'
+require 'pony'
+
+### Global settings
+before do
+  cache_control( :public, :must_revalidate, :max_age => 3600 ) unless development?
+end
 
 # Serve all public folder files
 # set :public_folder, 'public'
@@ -20,8 +31,12 @@ get '/' do
 end
 
 get '/:route' do
-  valid_routes = [  'about' ] 
-
+  valid_routes = [  'acerca-de', 
+                    'participants',
+                    'mentores',
+                    'comunidad',
+                    'patrocinadores',
+                    'contacto' ] 
   valid_routes.each do | r |
     @route = r if params[:route] == r
   end
