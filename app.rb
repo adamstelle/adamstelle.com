@@ -31,12 +31,7 @@ get '/' do
 end
 
 get '/:route' do
-  valid_routes = [  'acerca-de', 
-                    'participants',
-                    'mentores',
-                    'comunidad',
-                    'patrocinadores',
-                    'contacto' ] 
+  valid_routes = [  'about' ] 
   valid_routes.each do | r |
     @route = r if params[:route] == r
   end
